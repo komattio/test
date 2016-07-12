@@ -8,7 +8,8 @@ get '/show' do
         content: "It's a sunny day."
     }
 
-    article.to_json
+    a = article.to_json
+    puts a["title"]
 end
 
 post '/edit' do
