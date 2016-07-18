@@ -12,10 +12,10 @@ html = open(url) do |f|
   f.read # htmlを読み込んで変数htmlに渡す
 end
 
-p html
-
 # htmlをパース(解析)してオブジェクトを生成
 doc = Nokogiri::HTML.parse(html, nil, charset)
 
+a = doc.search('a')
+
 # タイトルを表示
-p doc.title
+p a.text
