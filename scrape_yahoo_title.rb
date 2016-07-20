@@ -18,4 +18,4 @@ doc = Nokogiri::HTML.parse(html, nil, charset)
 a = doc.search('a')
 
 # タイトルを表示
-p a.text
+p a.title
