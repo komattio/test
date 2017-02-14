@@ -10,12 +10,21 @@ n.times{
 }
 v.sort!
 
+def search(l, r, f)
+  while r-l > 1
+    k = (l+r)/2
+    f.call(k) ? (l=k) : (r=k) 
+  end
+  l
+end
+
 c = 0 # count
 (0..n-3).each{|i|
-  (i+1..n-2).each{|j|
-    r = s-v[i]-v[j]
-    next if r < 1
-    c+=1 if r > v[j] && e[r]
+  a = search(i+1, n-1, lambda{|k| v[i]+v[k]+v[n-1] < s})
+  b = search(i+1, n-1, lambda{|k| v[i]+v[k]+v[k+1] < s})
+
+  (a..b).each{|j|
+    c+=1 if e[s-v[i]-v[j]]
   }
 }
 
