@@ -18,14 +18,15 @@ def search(l, r, f)
   l
 end
 
-c = 0 # count
 (0..n-3).each{|i|
-  a = search(i+1, n-1, lambda{|k| v[i]+v[k]+v[n-1] < s})
-  b = search(i+1, n-1, lambda{|k| v[i]+v[k]+v[k+1] < s})
+  r = s-v[i]
+  a = search(i+1, n-1, lambda{|k| v[k]+v[n-1] < r})
+  b = search(i+1, n-1, lambda{|k| v[k]+v[k+1] < r})
 
-  (a..b).each{|j|
-    c+=1 if e[s-v[i]-v[j]]
-  }
+  while a <= b
+    c+=1 if e[r-v[a]]
+    a+=1
+  end
 }
 
 p c
