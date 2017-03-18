@@ -25,6 +25,14 @@ begin
   puts "技術部"
   engineers.each{|line| puts line}
 
+  # ファイルの出力
+  File.open("sales.csv", "w") do |file|
+    sales.each{|s| file.puts(s)}
+  end
+  File.open("engineers.csv", "w") do |file|
+    engineers.each{|s| file.puts(s)}
+  end
+
 rescue SystemCallError => e
   puts %Q(class=[#{e.class}] message=[#{e.message}])
 rescue IOError=> e
